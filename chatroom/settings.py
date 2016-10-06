@@ -124,10 +124,17 @@ STATIC_URL = '/static/'
 
 # WebSocket Channels Layers
 CHANNEL_LAYERS = {
+    # 'default': {
+    #     'BACKEND': 'asgiref.inmemory.ChannelLayer',
+    #     # 'CONFIG': {
+    #     #     'hosts': [('redis://:acgnotamashi@dev.eavictor.com:6379')],
+    #     # },
+    #     'ROUTING': 'chatroom.routing.channel_routing',
+    # },
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 'redis://:acgnotamashi@dev.eavictor.com:6379')]
+            'hosts': [('redis://:acgnotamashi@dev.eavictor.com:6379')],
         },
         'ROUTING': 'chatroom.routing.channel_routing',
     }

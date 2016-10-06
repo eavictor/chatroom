@@ -1,10 +1,10 @@
 {% extends "chat/base.html" %}
 {% block content %}
-    <div class="col-md-3"></div>
+    <div class="col-xs-3"></div>
 
 
 
-    <div class="col-md-6">
+    <div class="col-xs-6">
         <div id="message_box" style="min-height: 500px;"></div>
         <input type="text" class="form-control" placeholder="Text input" id="text_message">
         <input type="button" class="btn btn-success" id="send_text" value="Send">
@@ -12,7 +12,7 @@
 
 
 
-    <div class="col-md-3"></div>
+    <div class="col-xs-3"></div>
 
 
 
@@ -23,21 +23,26 @@
 
             {# open websocket #}
             socket.onopen = function(e){
+                console.log("WebSocket OnOpen :");
                 console.log(e);
+                socket.send("Hello django-channels");
             };
 
             {# receive text from server #}
-            socket.onmessage = function(msg){
-                console.log(msg);
-                $("#message_box").append(msg);
+            socket.onmessage = function(message){
+                console.log("WebSocket OnMessage :");
+                console.log(message);
+                $("#message_box").append(message.data + "<br>");
             };
 
             {# send text message to server #}
             $("#send_text").click(function(){
+                console.log("WebSocket Send Message :");
                 var message = $("#text_message");
                 var message_text = message.val();
+                console.log(message_text);
                 if (message_text.length > 0) {
-                    socket.send(message_text + "\r\n");
+                    socket.send(message_text);
                     message.val("");
                 }
             });
