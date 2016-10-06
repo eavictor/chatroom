@@ -35,6 +35,12 @@
                 $("#message_box").append(message.data + "<br>");
             };
 
+            {# close websocket connection #}
+            window.onbeforeunload = function(){
+                socket.onclose = function(){};
+                socket.close();
+            };
+
             {# send text message to server #}
             $("#send_text").click(function(){
                 console.log("WebSocket Send Message :");
