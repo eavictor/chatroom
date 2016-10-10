@@ -1,4 +1,5 @@
-from channels import Group, Channel
+from channels import Group
+# from channels import Channel
 from channels.auth import channel_session_user_from_http, channel_session_user
 
 
