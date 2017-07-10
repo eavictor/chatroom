@@ -127,14 +127,14 @@ CHANNEL_LAYERS = {
     # 'default': {
     #     'BACKEND': 'asgiref.inmemory.ChannelLayer',
     #     # 'CONFIG': {
-    #     #     'hosts': [('redis://:acgnotamashi@dev.eavictor.com:6379')],
+    #     #     'hosts': [('redis://localhost:6379')],
     #     # },
     #     'ROUTING': 'chatroom.routing.channel_routing',
     # },
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('redis://:acgnotamashi@dev.eavictor.com:6379')],
+            'hosts': [('redis://redis.local:6379')],
         },
         'ROUTING': 'chatroom.routing.channel_routing',
     }
